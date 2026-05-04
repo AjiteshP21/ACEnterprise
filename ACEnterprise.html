@@ -1,0 +1,3115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A&C Enterprise — Precision industrial metal fasteners. Bolts, Nuts, Washers, Screws, Rivets. Made in India, Mumbai.">
+    <title>A&C Enterprise — Industrial Metal Fasteners</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        /* ═══════════════════════ RESET + VARIABLES ═══════════════════════ */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px
+        }
+
+        :root {
+            --white: #ffffff;
+            --off: #F8F7F4;
+            --ink: #0D0D0D;
+            --ink2: #2D2D2D;
+            --ink3: #6B6B6B;
+            --ink4: #A8A8A8;
+            --border: #E8E4DC;
+            --border2: #D4CECC;
+            --accent: #D4521A;
+            --accent2: #FF6B2B;
+            --navy: #0C1F3F;
+            --navy2: #1A3560;
+            --sand: #F2EDE4;
+            --sand2: #E8E0D2;
+            --gold: #C8A84B;
+            --r: 16px;
+            --r2: 24px;
+            --r3: 32px;
+            --sans: 'Manrope',system-ui,sans-serif;
+            --display: 'Bebas Neue',sans-serif;
+            --mono: 'JetBrains Mono',monospace;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--off);
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            cursor: none
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        ul {
+            list-style: none
+        }
+
+        button {
+            font-family: inherit;
+            cursor: none;
+            border: none;
+            background: none
+        }
+
+        ::selection {
+            background: rgba(212,82,26,.15)
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--off)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border2);
+            border-radius: 2px
+        }
+
+        /* ═══════════════════════ CURSOR ═══════════════════════ */
+        #cur-outer, #cur-inner {
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            border-radius: 50%;
+            transition: transform .15s ease,opacity .3s
+        }
+
+        #cur-outer {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(212,82,26,.5);
+            top: -18px;
+            left: -18px;
+            transition: width .3s,height .3s,border-color .3s,transform .15s
+        }
+
+        #cur-inner {
+            width: 7px;
+            height: 7px;
+            background: var(--accent);
+            top: -3.5px;
+            left: -3.5px;
+            box-shadow: 0 0 12px var(--accent)
+        }
+
+        body.hovering #cur-outer {
+            width: 56px;
+            height: 56px;
+            border-color: var(--accent);
+            background: rgba(212,82,26,.06)
+        }
+
+        /* ═══════════════════════ NAV ═══════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 60px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background .4s,box-shadow .4s,backdrop-filter .4s
+        }
+
+            nav.scrolled {
+                background: rgba(248,247,244,.92);
+                backdrop-filter: blur(24px);
+                box-shadow: 0 1px 0 var(--border)
+            }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: none
+        }
+
+        .nav-logo-box {
+            width: 40px;
+            height: 40px;
+            background: var(--ink);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0
+        }
+
+            .nav-logo-box span {
+                font-family: var(--display);
+                font-size: 1rem;
+                color: var(--accent);
+                letter-spacing: .05em
+            }
+
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column
+        }
+
+        .nav-logo-name {
+            font-size: .9rem;
+            font-weight: 800;
+            color: var(--ink);
+            letter-spacing: -.01em
+        }
+
+        .nav-logo-tag {
+            font-family: var(--mono);
+            font-size: .55rem;
+            color: var(--ink4);
+            letter-spacing: .06em;
+            text-transform: uppercase
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .nav-link {
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--ink3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: color .2s,background .2s;
+            letter-spacing: .01em
+        }
+
+            .nav-link:hover, .nav-link.active {
+                color: var(--ink);
+                background: rgba(0,0,0,.05)
+            }
+
+        .nav-cta {
+            background: var(--ink);
+            color: var(--white) !important;
+            border-radius: 8px;
+            transition: background .2s,transform .2s !important
+        }
+
+            .nav-cta:hover {
+                background: var(--accent) !important;
+                transform: translateY(-1px) !important
+            }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 6px;
+            border-radius: 6px
+        }
+
+            .nav-hamburger span {
+                display: block;
+                width: 22px;
+                height: 1.5px;
+                background: var(--ink);
+                border-radius: 2px;
+                transition: transform .3s,opacity .3s
+            }
+
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--off);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px
+        }
+
+            .nav-mobile.open {
+                display: flex
+            }
+
+            .nav-mobile a {
+                font-family: var(--display);
+                font-size: 3rem;
+                color: var(--ink);
+                letter-spacing: .05em;
+                transition: color .2s
+            }
+
+                .nav-mobile a:hover {
+                    color: var(--accent)
+                }
+
+        /* ═══════════════════════ HERO ═══════════════════════ */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 60px 80px;
+            position: relative;
+            overflow: hidden;
+            background: var(--ink)
+        }
+
+        .hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%
+        }
+
+        .hero-grain {
+            position: absolute;
+            inset: 0;
+            opacity: .04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            pointer-events: none
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: .65rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.45);
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 2;
+            animation: fadeUp .8s ease .2s both
+        }
+
+        .hero-tag-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.8)
+            }
+        }
+
+        .hero-h1 {
+            font-family: var(--display);
+            font-size: clamp(5rem,12vw,10rem);
+            line-height: .95;
+            letter-spacing: .02em;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+            animation: fadeUp .8s ease .3s both
+        }
+
+        .hero-h1-line2 {
+            color: var(--accent)
+        }
+
+        .hero-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-top: 48px;
+            position: relative;
+            z-index: 2;
+            animation: fadeUp .8s ease .5s both
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: rgba(255,255,255,.55);
+            max-width: 420px;
+            line-height: 1.8;
+            font-weight: 300
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-direction: column;
+            align-items: flex-end
+        }
+
+        .hero-stats-strip {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,.08);
+            position: relative;
+            z-index: 2;
+            animation: fadeUp .8s ease .6s both
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column
+        }
+
+        .hero-stat-n {
+            font-family: var(--display);
+            font-size: 2.4rem;
+            color: var(--white);
+            line-height: 1;
+            letter-spacing: .02em
+        }
+
+            .hero-stat-n em {
+                color: var(--accent);
+                font-style: normal
+            }
+
+        .hero-stat-l {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.35);
+            margin-top: 4px
+        }
+
+        .hero-scroll {
+            position: absolute;
+            right: 60px;
+            bottom: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+            animation: fadeUp .8s ease .8s both
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom,var(--accent),transparent);
+            animation: scrollDrop 2s ease-in-out infinite
+        }
+
+        .hero-scroll-label {
+            font-family: var(--mono);
+            font-size: .55rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.3);
+            writing-mode: vertical-rl
+        }
+
+        @keyframes scrollDrop {
+            0%,100% {
+                transform: scaleY(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scaleY(.5);
+                opacity: .4
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* ═══════════════════════ BUTTONS ═══════════════════════ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--sans);
+            font-size: .85rem;
+            font-weight: 700;
+            padding: 13px 28px;
+            border-radius: 10px;
+            border: none;
+            cursor: none;
+            text-decoration: none;
+            transition: all .25s ease;
+            white-space: nowrap;
+            letter-spacing: .01em
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--ink);
+            box-shadow: 0 2px 12px rgba(255,255,255,.15)
+        }
+
+            .btn-white:hover {
+                background: var(--sand);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 24px rgba(255,255,255,.2)
+            }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(212,82,26,.35)
+        }
+
+            .btn-accent:hover {
+                background: #bf4a16;
+                transform: translateY(-2px);
+                box-shadow: 0 8px 28px rgba(212,82,26,.5)
+            }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--ink);
+            border: 1.5px solid var(--border2)
+        }
+
+            .btn-outline-dark:hover {
+                border-color: var(--ink);
+                background: var(--ink);
+                color: var(--white);
+                transform: translateY(-2px)
+            }
+
+        .btn-ink {
+            background: var(--ink);
+            color: var(--white)
+        }
+
+            .btn-ink:hover {
+                background: var(--navy);
+                transform: translateY(-2px)
+            }
+
+        .btn-lg {
+            padding: 16px 36px;
+            font-size: .9rem;
+            border-radius: 12px
+        }
+
+        .btn-sm {
+            padding: 9px 20px;
+            font-size: .78rem;
+            border-radius: 8px
+        }
+
+        /* ═══════════════════════ SECTION BASE ═══════════════════════ */
+        .section {
+            padding: 120px 60px
+        }
+
+        .section-white {
+            background: var(--white)
+        }
+
+        .section-sand {
+            background: var(--sand)
+        }
+
+        .section-ink {
+            background: var(--ink)
+        }
+
+        .container {
+            max-width: 1340px;
+            margin: 0 auto
+        }
+
+        .section-eye {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: .65rem;
+            font-weight: 500;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px
+        }
+
+            .section-eye::before {
+                content: "";
+                width: 20px;
+                height: 1.5px;
+                background: var(--accent);
+                border-radius: 2px
+            }
+
+        .section-h2 {
+            font-family: var(--display);
+            font-size: clamp(2.8rem,5vw,5rem);
+            letter-spacing: .02em;
+            color: var(--ink);
+            line-height: .95;
+            margin-bottom: 20px
+        }
+
+            .section-h2 em {
+                color: var(--accent);
+                font-style: normal
+            }
+
+            .section-h2.on-dark {
+                color: var(--white)
+            }
+
+                .section-h2.on-dark em {
+                    color: var(--accent2)
+                }
+
+        .section-lead {
+            font-size: 1rem;
+            color: var(--ink3);
+            line-height: 1.85;
+            font-weight: 300;
+            max-width: 540px
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .7s ease,transform .7s ease
+        }
+
+            .reveal.in {
+                opacity: 1;
+                transform: translateY(0)
+            }
+
+        .rd1 {
+            transition-delay: .1s
+        }
+
+        .rd2 {
+            transition-delay: .2s
+        }
+
+        .rd3 {
+            transition-delay: .3s
+        }
+
+        .rd4 {
+            transition-delay: .4s
+        }
+
+        /* ═══════════════════════ TRUST BAR ═══════════════════════ */
+        .trust {
+            background: var(--navy);
+            padding: 22px 60px
+        }
+
+        .trust-inner {
+            max-width: 1340px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .trust-icon {
+            font-size: 1rem
+        }
+
+        .trust-text {
+            font-family: var(--mono);
+            font-size: .65rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.55)
+        }
+
+        .trust-div {
+            width: 1px;
+            height: 18px;
+            background: rgba(255,255,255,.12)
+        }
+
+        /* ═══════════════════════ MARQUEE ═══════════════════════ */
+        .marquee-section {
+            background: var(--accent);
+            padding: 18px 0;
+            overflow: hidden
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 0;
+            white-space: nowrap;
+            animation: marquee 22s linear infinite
+        }
+
+        .marquee-item {
+            font-family: var(--display);
+            font-size: 1.15rem;
+            letter-spacing: .06em;
+            color: rgba(255,255,255,.85);
+            padding: 0 40px;
+            flex-shrink: 0
+        }
+
+        .marquee-sep {
+            color: rgba(255,255,255,.4);
+            padding: 0;
+            flex-shrink: 0
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* ═══════════════════════ ABOUT ═══════════════════════ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+            margin-top: 72px
+        }
+
+        .about-body {
+            font-size: 1rem;
+            color: var(--ink3);
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 20px
+        }
+
+            .about-body strong {
+                color: var(--ink);
+                font-weight: 700
+            }
+
+        .about-number-row {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 0;
+            margin: 40px 0;
+            border: 1px solid var(--border);
+            border-radius: var(--r2);
+            overflow: hidden
+        }
+
+        .about-num {
+            padding: 24px 20px;
+            border-right: 1px solid var(--border);
+            text-align: center
+        }
+
+            .about-num:last-child {
+                border-right: none
+            }
+
+        .about-num-n {
+            font-family: var(--display);
+            font-size: 2.2rem;
+            letter-spacing: .02em;
+            color: var(--ink);
+            line-height: 1
+        }
+
+            .about-num-n sup {
+                font-family: var(--sans);
+                font-size: 1rem;
+                color: var(--accent)
+            }
+
+        .about-num-l {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--ink4);
+            margin-top: 6px
+        }
+
+        .about-services {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 28px
+        }
+
+        .about-svc {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: var(--sand);
+            border: 1px solid var(--border);
+            transition: border-color .2s,background .2s,transform .2s
+        }
+
+            .about-svc:hover {
+                border-color: var(--border2);
+                background: var(--white);
+                transform: translateX(5px)
+            }
+
+        .about-svc-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0
+        }
+
+        .about-svc-text {
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--ink2)
+        }
+
+        /* About visual side */
+        .about-visual-block {
+            display: flex;
+            flex-direction: column;
+            gap: 20px
+        }
+
+        .about-big-card {
+            background: var(--ink);
+            border-radius: var(--r2);
+            padding: 36px;
+            position: relative;
+            overflow: hidden
+        }
+
+            .about-big-card::before {
+                content: "";
+                position: absolute;
+                right: -40px;
+                top: -40px;
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                background: rgba(212,82,26,.12);
+                pointer-events: none
+            }
+
+        .about-big-card-label {
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.35);
+            margin-bottom: 16px
+        }
+
+        .about-big-card-quote {
+            font-family: var(--display);
+            font-size: 1.6rem;
+            letter-spacing: .02em;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 16px
+        }
+
+            .about-big-card-quote em {
+                color: var(--accent2);
+                font-style: normal
+            }
+
+        .about-big-card-sig {
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.3)
+        }
+
+        .about-mini-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .about-mini {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 20px;
+            transition: border-color .2s,box-shadow .2s,transform .25s ease
+        }
+
+            .about-mini:hover {
+                border-color: var(--accent);
+                box-shadow: 0 0 0 3px rgba(212,82,26,.07);
+                transform: translateY(-3px)
+            }
+
+        .about-mini-icon {
+            font-size: 1.4rem;
+            margin-bottom: 10px
+        }
+
+        .about-mini-title {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 4px
+        }
+
+        .about-mini-desc {
+            font-size: .76rem;
+            color: var(--ink4);
+            line-height: 1.6;
+            font-weight: 300
+        }
+
+        /* ═══════════════════════ CATEGORIES ═══════════════════════ */
+        .cat-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 56px
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 2px;
+            background: var(--border);
+            border-radius: var(--r2);
+            overflow: hidden
+        }
+
+        .cat-card {
+            background: var(--white);
+            padding: 36px;
+            position: relative;
+            cursor: none;
+            transition: background .3s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column
+        }
+
+            .cat-card:hover {
+                background: var(--sand)
+            }
+
+        .cat-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px
+        }
+
+        .cat-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0
+        }
+
+        .cat-num {
+            font-family: var(--display);
+            font-size: 3.5rem;
+            color: var(--border2);
+            line-height: 1;
+            letter-spacing: .02em
+        }
+
+        .cat-name {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            letter-spacing: .02em;
+            color: var(--ink);
+            margin-bottom: 8px
+        }
+
+        .cat-count {
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--ink4);
+            margin-bottom: 14px
+        }
+
+        .cat-examples {
+            font-size: .8rem;
+            color: var(--ink3);
+            line-height: 1.7;
+            font-weight: 300;
+            flex: 1
+        }
+
+        .cat-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: .65rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 20px;
+            transition: gap .25s ease
+        }
+
+        .cat-card:hover .cat-arrow {
+            gap: 12px
+        }
+
+        /* ═══════════════════════ PRODUCTS (inline list) ═══════════════════════ */
+        .products-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 48px
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 36px
+        }
+
+        .filter-pill {
+            font-family: var(--mono);
+            font-size: .65rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 100px;
+            background: var(--sand);
+            border: 1px solid var(--border);
+            color: var(--ink3);
+            cursor: none;
+            transition: all .2s
+        }
+
+            .filter-pill:hover {
+                border-color: var(--border2);
+                color: var(--ink)
+            }
+
+            .filter-pill.active {
+                background: var(--ink);
+                border-color: var(--ink);
+                color: var(--white)
+            }
+
+        .search-bar-wrap {
+            position: relative;
+            margin-bottom: 36px
+        }
+
+        .search-bar-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .85rem;
+            color: var(--ink4);
+            pointer-events: none
+        }
+
+        .search-bar {
+            width: 100%;
+            font-family: var(--sans);
+            font-size: .9rem;
+            color: var(--ink);
+            background: var(--white);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 13px 16px 13px 42px;
+            outline: none;
+            transition: border-color .2s,box-shadow .2s
+        }
+
+            .search-bar:focus {
+                border-color: var(--ink);
+                box-shadow: 0 0 0 4px rgba(13,13,13,.06)
+            }
+
+        .prod-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(275px,1fr));
+            gap: 16px
+        }
+
+        .prod-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color .25s,box-shadow .3s,transform .3s ease;
+            cursor: none
+        }
+
+            .prod-card:hover {
+                border-color: var(--border2);
+                box-shadow: 0 12px 40px rgba(0,0,0,.09);
+                transform: translateY(-4px)
+            }
+
+        .prod-img-box {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .prod-img {
+            max-height: 140px;
+            max-width: 82%;
+            object-fit: contain;
+            transition: transform .4s ease
+        }
+
+        .prod-card:hover .prod-img {
+            transform: scale(1.08)
+        }
+
+        .prod-no-img {
+            font-size: 3rem;
+            opacity: .12
+        }
+
+        .prod-chip {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-family: var(--mono);
+            font-size: .55rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            background: rgba(255,255,255,.9);
+            color: var(--ink2);
+            border: 1px solid var(--border);
+            padding: 3px 10px;
+            border-radius: 100px;
+            backdrop-filter: blur(8px)
+        }
+
+        .prod-body {
+            padding: 18px 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column
+        }
+
+        .prod-name {
+            font-family: var(--display);
+            font-size: 1.05rem;
+            letter-spacing: .02em;
+            color: var(--ink);
+            margin-bottom: 6px
+        }
+
+        .prod-desc {
+            font-size: .78rem;
+            color: var(--ink4);
+            line-height: 1.65;
+            font-weight: 300;
+            flex: 1;
+            margin-bottom: 14px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden
+        }
+
+        .prod-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 14px
+        }
+
+        .prod-spec {
+            font-family: var(--mono);
+            font-size: .52rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--ink3);
+            background: var(--sand);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 4px;
+            transition: background .2s,border-color .2s,color .2s
+        }
+
+        .prod-card:hover .prod-spec {
+            background: var(--ink);
+            color: var(--white);
+            border-color: var(--ink)
+        }
+
+        .prod-enq {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .02em;
+            color: var(--accent);
+            background: rgba(212,82,26,.07);
+            border: 1.5px solid rgba(212,82,26,.2);
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all .2s ease;
+            cursor: none
+        }
+
+            .prod-enq:hover {
+                background: var(--accent);
+                color: var(--white);
+                border-color: var(--accent);
+                transform: translateY(-1px)
+            }
+
+        .prod-empty {
+            text-align: center;
+            padding: 80px 24px;
+            grid-column: 1/-1
+        }
+
+        .prod-empty-ico {
+            font-size: 2.5rem;
+            opacity: .2;
+            margin-bottom: 14px
+        }
+
+        .skel-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r2);
+            overflow: hidden
+        }
+
+        .skel-img {
+            height: 180px
+        }
+
+        .skel-body {
+            padding: 20px
+        }
+
+        .skel-line {
+            height: 10px;
+            border-radius: 4px;
+            margin-bottom: 8px
+        }
+
+        .skel-img, .skel-line {
+            background: linear-gradient(90deg,var(--sand) 25%,var(--sand2) 50%,var(--sand) 75%);
+            background-size: 200% 100%;
+            animation: skel 1.5s ease infinite
+        }
+
+            .skel-line.w70 {
+                width: 70%
+            }
+
+            .skel-line.w90 {
+                width: 90%
+            }
+
+            .skel-line.w55 {
+                width: 55%
+            }
+
+        @keyframes skel {
+            0% {
+                background-position: 200% 0
+            }
+
+            100% {
+                background-position: -200% 0
+            }
+        }
+
+        /* ═══════════════════════ WHY ═══════════════════════ */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 24px;
+            margin-top: 64px
+        }
+
+        .why-card {
+            border-radius: var(--r2);
+            padding: 40px;
+            transition: transform .3s ease,box-shadow .3s
+        }
+
+            .why-card:hover {
+                transform: translateY(-5px)
+            }
+
+            .why-card.wc1 {
+                background: var(--ink);
+                color: var(--white)
+            }
+
+            .why-card.wc2 {
+                background: var(--accent);
+                color: var(--white)
+            }
+
+            .why-card.wc3 {
+                background: var(--sand);
+                border: 1px solid var(--border)
+            }
+
+        .why-icon {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            display: block
+        }
+
+        .why-title {
+            font-family: var(--display);
+            font-size: 1.6rem;
+            letter-spacing: .02em;
+            margin-bottom: 14px
+        }
+
+        .why-card.wc1 .why-title, .why-card.wc2 .why-title {
+            color: var(--white)
+        }
+
+        .why-card.wc3 .why-title {
+            color: var(--ink)
+        }
+
+        .why-desc {
+            font-size: .88rem;
+            line-height: 1.8;
+            font-weight: 300
+        }
+
+        .why-card.wc1 .why-desc {
+            color: rgba(255,255,255,.6)
+        }
+
+        .why-card.wc2 .why-desc {
+            color: rgba(255,255,255,.8)
+        }
+
+        .why-card.wc3 .why-desc {
+            color: var(--ink3)
+        }
+
+        /* ═══════════════════════ CTA STRIP ═══════════════════════ */
+        .cta-strip {
+            background: var(--accent);
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden
+        }
+
+            .cta-strip::before {
+                content: "";
+                position: absolute;
+                right: -80px;
+                top: -80px;
+                width: 360px;
+                height: 360px;
+                border-radius: 50%;
+                background: rgba(255,255,255,.08);
+                pointer-events: none
+            }
+
+            .cta-strip::after {
+                content: "";
+                position: absolute;
+                left: -40px;
+                bottom: -80px;
+                width: 220px;
+                height: 220px;
+                border-radius: 50%;
+                background: rgba(0,0,0,.06);
+                pointer-events: none
+            }
+
+        .cta-strip-inner {
+            max-width: 1340px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1
+        }
+
+        .cta-title {
+            font-family: var(--display);
+            font-size: clamp(2rem,4vw,3.5rem);
+            letter-spacing: .02em;
+            color: var(--white)
+        }
+
+        .cta-sub {
+            font-size: .95rem;
+            color: rgba(255,255,255,.75);
+            font-weight: 300;
+            margin-top: 6px
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        /* ═══════════════════════ CREDENTIALS + CATALOGUE ═══════════════════════ */
+        .cred-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 720px;
+            margin: 56px auto 0
+        }
+
+        .cred-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r2);
+            padding: 24px;
+            text-align: center;
+            transition: border-color .2s,box-shadow .2s,transform .25s ease;
+            cursor: none
+        }
+
+            .cred-card:hover {
+                border-color: var(--border2);
+                box-shadow: 0 12px 36px rgba(0,0,0,.07);
+                transform: translateY(-4px)
+            }
+
+        .cred-badge {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 14px
+        }
+
+        .badge-teal {
+            background: rgba(14,116,144,.08);
+            color: #0e7490
+        }
+
+        .badge-navy {
+            background: rgba(12,31,63,.08);
+            color: var(--navy)
+        }
+
+        .cred-img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border)
+        }
+
+        .cred-name {
+            font-weight: 700;
+            font-size: .88rem;
+            color: var(--ink);
+            margin-top: 12px
+        }
+
+        .cred-sub {
+            font-family: var(--mono);
+            font-size: .6rem;
+            color: var(--ink4);
+            letter-spacing: .06em;
+            margin-top: 3px
+        }
+
+        /* Catalogue card */
+        .cat-dl-block {
+            max-width: 960px;
+            margin: 40px auto 0
+        }
+
+        .cat-dl-card {
+            background: var(--navy);
+            border-radius: var(--r2);
+            padding: 48px 52px;
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow .35s,transform .35s ease;
+            cursor: none
+        }
+
+            .cat-dl-card:hover {
+                box-shadow: 0 24px 64px rgba(12,31,63,.35);
+                transform: translateY(-3px)
+            }
+
+            .cat-dl-card::before {
+                content: "";
+                position: absolute;
+                right: -60px;
+                top: -60px;
+                width: 240px;
+                height: 240px;
+                border-radius: 50%;
+                background: rgba(212,82,26,.1);
+                pointer-events: none
+            }
+
+        .cat-dl-icon {
+            position: relative;
+            flex-shrink: 0;
+            width: 76px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .cat-dl-ring {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            border: 1px solid rgba(212,82,26,.35);
+            background: rgba(212,82,26,.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            transition: transform .35s ease,background .35s
+        }
+
+        .cat-dl-card:hover .cat-dl-ring {
+            transform: scale(1.1);
+            background: rgba(212,82,26,.18)
+        }
+
+        .cat-dl-pulse {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(212,82,26,.2);
+            width: 76px;
+            height: 76px;
+            animation: catRing 2.8s ease-out infinite
+        }
+
+            .cat-dl-pulse:nth-child(2) {
+                animation-delay: 1.4s
+            }
+
+        @keyframes catRing {
+            0% {
+                transform: scale(1);
+                opacity: .6
+            }
+
+            100% {
+                transform: scale(2.1);
+                opacity: 0
+            }
+        }
+
+        .cat-dl-info {
+            flex: 1;
+            min-width: 0
+        }
+
+        .cat-dl-eyebrow {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(212,82,26,.7);
+            background: rgba(212,82,26,.1);
+            border: 1px solid rgba(212,82,26,.2);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 12px
+        }
+
+        .cat-dl-title {
+            font-family: var(--display);
+            font-size: 1.35rem;
+            letter-spacing: .02em;
+            color: var(--white);
+            margin-bottom: 6px
+        }
+
+        .cat-dl-sub {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.3);
+            margin-bottom: 18px
+        }
+
+        .cat-dl-pts {
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .cat-dl-pt {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .83rem;
+            color: rgba(255,255,255,.6);
+            font-weight: 300
+        }
+
+        .cat-dl-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0
+        }
+
+        .cat-dl-btn-wrap {
+            flex-shrink: 0;
+            text-align: center
+        }
+
+        .cat-dl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 15px 28px;
+            font-size: .85rem;
+            font-weight: 700;
+            text-decoration: none;
+            min-width: 165px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform .3s ease,box-shadow .3s;
+            box-shadow: 0 4px 20px rgba(212,82,26,.4);
+            cursor: none
+        }
+
+            .cat-dl-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 32px rgba(212,82,26,.55)
+            }
+
+        .cat-dl-btn-ico {
+            animation: bounce 2s ease-in-out infinite
+        }
+
+        .cat-dl-btn:hover .cat-dl-btn-ico {
+            animation: none;
+            transform: translateY(3px)
+        }
+
+        @keyframes bounce {
+            0%,100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(4px)
+            }
+        }
+
+        .cat-dl-note {
+            font-family: var(--mono);
+            font-size: .52rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.22);
+            margin-top: 10px
+        }
+
+        /* ═══════════════════════ CONTACT ═══════════════════════ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 72px;
+            align-items: start;
+            margin-top: 72px
+        }
+
+        .contact-info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 24px
+        }
+
+        .cic {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 12px;
+            padding: 18px 20px;
+            transition: border-color .2s
+        }
+
+            .cic:hover {
+                border-color: rgba(255,255,255,.16)
+            }
+
+        .cic-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(212,82,26,.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0
+        }
+
+        .cic-label {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.35);
+            margin-bottom: 4px
+        }
+
+        .cic-val {
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.5
+        }
+
+            .cic-val a {
+                color: rgba(255,255,255,.8);
+                transition: color .2s
+            }
+
+                .cic-val a:hover {
+                    color: var(--white)
+                }
+
+        .hours-box {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius: 12px;
+            padding: 20px
+        }
+
+        .hours-title {
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.3);
+            margin-bottom: 12px
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: .85rem;
+            color: rgba(255,255,255,.6);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,.05)
+        }
+
+            .hours-row:last-child {
+                border-bottom: none
+            }
+
+        .hours-time {
+            font-weight: 600;
+            color: var(--white)
+        }
+
+        /* Form */
+        .form-card {
+            background: var(--white);
+            border-radius: var(--r2);
+            padding: 44px;
+            box-shadow: 0 24px 64px rgba(0,0,0,.12)
+        }
+
+        .form-title {
+            font-family: var(--display);
+            font-size: 1.6rem;
+            letter-spacing: .02em;
+            color: var(--ink);
+            margin-bottom: 6px
+        }
+
+        .form-sub {
+            font-size: .85rem;
+            color: var(--ink3);
+            margin-bottom: 28px;
+            font-weight: 300
+        }
+
+        .form-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 14px
+        }
+
+        .form-label {
+            font-size: .75rem;
+            font-weight: 700;
+            color: var(--ink2);
+            letter-spacing: .02em
+        }
+
+        .form-input, .form-select, .form-textarea {
+            font-family: var(--sans);
+            font-size: .9rem;
+            color: var(--ink);
+            background: var(--sand);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            outline: none;
+            width: 100%;
+            transition: border-color .2s,background .2s,box-shadow .2s
+        }
+
+            .form-input:focus, .form-select:focus, .form-textarea:focus {
+                border-color: var(--ink);
+                background: var(--white);
+                box-shadow: 0 0 0 4px rgba(13,13,13,.06)
+            }
+
+            .form-input::placeholder, .form-textarea::placeholder {
+                color: var(--ink4)
+            }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            background: var(--ink);
+            color: var(--white);
+            font-family: var(--sans);
+            font-size: .9rem;
+            font-weight: 700;
+            border: none;
+            cursor: none;
+            transition: background .2s,transform .2s,box-shadow .2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            letter-spacing: .01em
+        }
+
+            .form-submit:hover {
+                background: var(--accent);
+                transform: translateY(-1px);
+                box-shadow: 0 6px 20px rgba(212,82,26,.3)
+            }
+
+            .form-submit:disabled {
+                opacity: .6;
+                cursor: not-allowed;
+                transform: none
+            }
+
+        .form-privacy {
+            font-size: .72rem;
+            color: var(--ink4);
+            text-align: center;
+            margin-top: 12px
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 48px 20px
+        }
+
+            .form-success.show {
+                display: block
+            }
+
+        .form-success-ico {
+            font-size: 3rem;
+            margin-bottom: 16px
+        }
+
+        .form-success-title {
+            font-family: var(--display);
+            font-size: 1.8rem;
+            letter-spacing: .02em;
+            color: var(--ink);
+            margin-bottom: 10px
+        }
+
+        .form-success-sub {
+            font-size: .9rem;
+            color: var(--ink3);
+            line-height: 1.8;
+            font-weight: 300
+        }
+
+        /* ═══════════════════════ FOOTER ═══════════════════════ */
+        footer {
+            background: var(--ink);
+            padding: 80px 60px 40px
+        }
+
+        .footer-inner {
+            max-width: 1340px;
+            margin: 0 auto
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.6fr;
+            gap: 60px;
+            margin-bottom: 60px
+        }
+
+        .footer-logo-mark {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: .85rem;
+            color: var(--accent);
+            margin-bottom: 16px
+        }
+
+        .footer-brand-name {
+            font-size: .95rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px
+        }
+
+        .footer-brand-desc {
+            font-size: .82rem;
+            color: rgba(255,255,255,.35);
+            line-height: 1.75;
+            max-width: 230px
+        }
+
+        .footer-gst {
+            font-family: var(--mono);
+            font-size: .58rem;
+            letter-spacing: .06em;
+            color: rgba(255,255,255,.18);
+            margin-top: 14px
+        }
+
+        .footer-col-title {
+            font-family: var(--mono);
+            font-size: .6rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.3);
+            margin-bottom: 18px
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+            .footer-links a {
+                font-size: .84rem;
+                color: rgba(255,255,255,.45);
+                transition: color .2s
+            }
+
+                .footer-links a:hover {
+                    color: var(--white)
+                }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .footer-citem {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: .82rem;
+            color: rgba(255,255,255,.4)
+        }
+
+            .footer-citem a {
+                color: rgba(255,255,255,.4);
+                transition: color .2s
+            }
+
+                .footer-citem a:hover {
+                    color: var(--white)
+                }
+
+        .footer-bottom {
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .footer-copy {
+            font-family: var(--mono);
+            font-size: .62rem;
+            color: rgba(255,255,255,.2)
+        }
+
+        /* ═══════════════════════ TOAST ═══════════════════════ */
+        .toast {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: .85rem;
+            font-weight: 500;
+            color: var(--ink);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform .35s ease,opacity .35s;
+            max-width: 340px
+        }
+
+            .toast.show {
+                transform: translateY(0);
+                opacity: 1
+            }
+
+        .toast-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0
+        }
+
+        .toast-success {
+            border-left: 3px solid #16a34a
+        }
+
+        .toast-error {
+            border-left: 3px solid #dc2626
+        }
+
+        /* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+        @media(max-width:1024px) {
+            nav {
+                padding: 0 28px
+            }
+
+            #hero {
+                padding: 0 28px 64px
+            }
+
+            .section {
+                padding: 80px 28px
+            }
+
+            .trust {
+                padding: 18px 28px
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 56px
+            }
+
+            .cat-grid {
+                grid-template-columns: repeat(2,1fr)
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px
+            }
+
+            .cat-dl-card {
+                gap: 28px;
+                padding: 36px 32px
+            }
+
+            .cta-strip {
+                padding: 64px 28px
+            }
+        }
+
+        @media(max-width:768px) {
+            .nav-links {
+                display: none
+            }
+
+            .nav-hamburger {
+                display: flex
+            }
+
+            .hero-h1 {
+                font-size: 4.5rem
+            }
+
+            .hero-bottom {
+                flex-direction: column;
+                align-items: flex-start
+            }
+
+            .trust-inner {
+                gap: 20px
+            }
+
+            .trust-div {
+                display: none
+            }
+
+            .about-number-row {
+                grid-template-columns: repeat(2,1fr)
+            }
+
+            .about-num:nth-child(2) {
+                border-right: none
+            }
+
+            .about-num:nth-child(3) {
+                border-top: 1px solid var(--border);
+                border-right: 1px solid var(--border)
+            }
+
+            .about-num:nth-child(4) {
+                border-top: 1px solid var(--border)
+            }
+
+            .cat-grid {
+                grid-template-columns: 1fr
+            }
+
+            .cred-layout {
+                grid-template-columns: 1fr
+            }
+
+            .cat-dl-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 32px 24px
+            }
+
+            .cat-dl-pts {
+                align-items: center
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 28px
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center
+            }
+
+            .form-2col {
+                grid-template-columns: 1fr
+            }
+
+            .prod-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px
+            }
+        }
+
+        @media(max-width:480px) {
+            .prod-grid {
+                grid-template-columns: 1fr
+            }
+
+            .section {
+                padding: 64px 20px
+            }
+
+            #hero {
+                padding: 0 20px 48px
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CURSOR -->
+    <div id="cur-outer"></div>
+    <div id="cur-inner"></div>
+
+    <!-- MOBILE NAV -->
+    <div class="nav-mobile" id="mobileNav">
+        <a href="#hero" onclick="closeMobile()">Home</a>
+        <a href="#about" onclick="closeMobile()">About</a>
+        <a href="#products" onclick="closeMobile()">Products</a>
+        <a href="#credentials" onclick="closeMobile()">Credentials</a>
+        <a href="#contact" onclick="closeMobile()">Contact</a>
+    </div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#hero" class="nav-logo">
+            <div class="nav-logo-box"><span>A&C</span></div>
+            <div class="nav-logo-text">
+                <div class="nav-logo-name">A&C Enterprise</div>
+                <div class="nav-logo-tag">Industrial Fasteners · Mumbai</div>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#products" class="nav-link">Products</a>
+            <a href="#credentials" class="nav-link">Credentials</a>
+            <a href="#contact" class="nav-link nav-cta">Get a Quote</a>
+        </div>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobile()">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-grain"></div>
+
+        <div class="hero-tag" style="position:relative;z-index:2">
+            <span class="hero-tag-dot"></span>
+            Est. Mumbai · Made in India · GST & MSME Certified
+        </div>
+
+        <h1 class="hero-h1">
+            PRECISION<br>
+            <span class="hero-h1-line2">FASTENERS</span><br>
+            YOU TRUST
+        </h1>
+
+        <div class="hero-bottom">
+            <p class="hero-desc">
+                A&C Enterprise supplies precision-engineered industrial metal fasteners —
+                bolts, nuts, washers, screws and rivets — to manufacturing, construction
+                and industrial sectors across India.
+            </p>
+            <div class="hero-actions">
+                <!--<a href="#products" class="btn btn-white btn-lg">Browse 49+ Products</a>-->
+                <a href="#contact" class="btn btn-accent btn-lg">Request Quote →</a>
+            </div>
+        </div>
+
+        <!--<div class="hero-stats-strip">
+            <div class="hero-stat">
+                <div class="hero-stat-n" data-count="49">0<em>+</em></div>
+                <div class="hero-stat-l">Products</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-n">6</div>
+                <div class="hero-stat-l">Categories</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-n" data-count="500">0<em>+</em></div>
+                <div class="hero-stat-l">Happy Clients</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-n">3</div>
+                <div class="hero-stat-l">Materials</div>
+            </div>
+        </div>-->
+
+        <div class="hero-scroll">
+            <div class="hero-scroll-line"></div>
+            <div class="hero-scroll-label">scroll</div>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust">
+        <div class="trust-inner">
+            <div class="trust-item"><span class="trust-icon">✅</span><span class="trust-text">GST Registered</span></div>
+            <div class="trust-div"></div>
+            <div class="trust-item"><span class="trust-icon">🏭</span><span class="trust-text">Udyam MSME Certified</span></div>
+            <div class="trust-div"></div>
+            <div class="trust-item"><span class="trust-icon">🇮🇳</span><span class="trust-text">Made in India</span></div>
+            <div class="trust-div"></div>
+            <div class="trust-item"><span class="trust-icon">📦</span><span class="trust-text">Pan India Delivery</span></div>
+            <div class="trust-div"></div>
+            <div class="trust-item"><span class="trust-icon">⚡</span><span class="trust-text">24hr Response</span></div>
+        </div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack">
+            <span class="marquee-item">Hex Bolt</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Nylock Nut</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Spring Washer</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Self-Tapping Screw</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Blind Rivet</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Clinching Nut</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Stud Bolt</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Eye Bolt</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Wing Nut</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Allen Socket Screw</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Monobolt Rivet</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Weld Nut</span><span class="marquee-sep">◆</span>
+            <!-- duplicate for seamless loop -->
+            <span class="marquee-item">Hex Bolt</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Nylock Nut</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Spring Washer</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Self-Tapping Screw</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Blind Rivet</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Clinching Nut</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Stud Bolt</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Eye Bolt</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Wing Nut</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Allen Socket Screw</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Monobolt Rivet</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item">Weld Nut</span><span class="marquee-sep">◆</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="section section-white">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-eye">Who We Are</div>
+                <h2 class="section-h2">Mumbai's Trusted<br><em>Fastener</em> Supplier</h2>
+            </div>
+            <div class="about-grid">
+                <div class="reveal">
+                    <p class="about-body">At <strong>A&C Enterprise</strong>, we contribute to India's growing manufacturing ecosystem by delivering high-quality, Made-in-India metal fasteners designed for modern industries. Our products are available in <strong>Steel, Stainless Steel, and Aluminium</strong> across multiple grades, sizes and specifications.</p>
+                    <p class="about-body">We go beyond supplying fasteners — offering <strong>end-to-end enterprise support</strong> from product design and technical consultation to flexible manufacturing and reliable on-time delivery across India.</p>
+                    <!--<div class="about-number-row">
+                        <div class="about-num"><div class="about-num-n">500<sup>+</sup></div><div class="about-num-l">Clients</div></div>
+                        <div class="about-num"><div class="about-num-n">49<sup>+</sup></div><div class="about-num-l">Products</div></div>
+                        <div class="about-num"><div class="about-num-n">6</div><div class="about-num-l">Categories</div></div>
+                        <div class="about-num"><div class="about-num-n">3</div><div class="about-num-l">Materials</div></div>
+                    </div>-->
+                    <div class="about-services">
+                        <div class="about-svc"><span class="about-svc-icon">⚙️</span><span class="about-svc-text">Product design & technical consultation</span></div>
+                        <div class="about-svc"><span class="about-svc-icon">🔧</span><span class="about-svc-text">Custom fastener development & prototyping</span></div>
+                        <div class="about-svc"><span class="about-svc-icon">📦</span><span class="about-svc-text">Flexible manufacturing — small to large volumes</span></div>
+                        <div class="about-svc"><span class="about-svc-icon">🚚</span><span class="about-svc-text">Reliable on-time delivery, Pan India</span></div>
+                    </div>
+                </div>
+                <div class="about-visual-block reveal rd2">
+                    <div class="about-big-card">
+                        <div class="about-big-card-label">Our Promise</div>
+                        <div class="about-big-card-quote">We build strong connections that hold industries together with <em>Precision, Performance, Progress.</em></div>
+                        <div class="about-big-card-sig">A&C Enterprise — Core Values</div>
+                    </div>
+                    <div class="about-mini-cards">
+                        <div class="about-mini"><div class="about-mini-icon">🏭</div><div class="about-mini-title">Manufacturing</div><div class="about-mini-desc">Production lines, assembly, heavy industry</div></div>
+                        <div class="about-mini"><div class="about-mini-icon">🏗️</div><div class="about-mini-title">Construction</div><div class="about-mini-desc">Civil, infrastructure, structural</div></div>
+                        <div class="about-mini"><div class="about-mini-icon">🚗</div><div class="about-mini-title">Automotive</div><div class="about-mini-desc">Vehicles, components, assemblies</div></div>
+                        <div class="about-mini"><div class="about-mini-icon">⚡</div><div class="about-mini-title">Engineering</div><div class="about-mini-desc">Precision, industrial equipment</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section section-sand">
+        <div class="container">
+            <div class="cat-header reveal">
+                <div>
+                    <div class="section-eye">Product Categories</div>
+                    <h2 class="section-h2">Products<br><em>Categories</em></h2>
+                </div>
+                <a href="#products" class="btn btn-outline-dark">View All Products</a>
+            </div>
+            <div class="cat-grid" id="catGrid"></div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="section section-white">
+        <div class="container">
+            <div class="products-header reveal">
+                <div>
+                    <div class="section-eye">Product Catalogue</div>
+                    <h2 class="section-h2">Browse <em>All</em><br>Fasteners</h2>
+                </div>
+                <!--<p class="section-lead">Steel · Stainless Steel · Aluminium<br>Multiple grades, sizes &amp; specifications.</p>-->
+            </div>
+            <div class="filter-row" id="filterRow"></div>
+            <div class="search-bar-wrap">
+                <span class="search-bar-icon">🔍</span>
+                <input type="text" class="search-bar" id="searchBar" placeholder="Search by name, material, spec…">
+            </div>
+            <p style="font-family:var(--mono);font-size:.68rem;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px">
+                Showing <span id="prodCount" style="color:var(--ink);font-weight:500">0</span> products
+            </p>
+            <div class="prod-grid" id="prodGrid"></div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE -->
+    <section class="section section-sand">
+        <div class="container">
+            <div class="text-center reveal" style="text-align:center">
+                <div class="section-eye" style="justify-content:center">Why Choose Us</div>
+                <h2 class="section-h2">Built on Three<br><em>Pillars</em></h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card wc1 reveal rd1">
+                    <span class="why-icon">⚙️</span>
+                    <div class="why-title">PRECISION</div>
+                    <p class="why-desc">Every fastener manufactured to exact specifications — ensuring perfect fit, superior quality, and unmatched reliability across all industrial applications.</p>
+                </div>
+                <div class="why-card wc2 reveal rd2">
+                    <span class="why-icon">📊</span>
+                    <div class="why-title">PERFORMANCE</div>
+                    <p class="why-desc">Products engineered for strength, durability and consistent results. Available in Steel, Stainless Steel and Aluminium across multiple grades.</p>
+                </div>
+                <div class="why-card wc3 reveal rd3">
+                    <span class="why-icon">🚀</span>
+                    <div class="why-title">PROGRESS</div>
+                    <p class="why-desc">Continuous improvement, innovation and long-term partnerships. We grow with our clients — from small batches to large-scale production volumes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-strip">
+        <div class="cta-strip-inner">
+            <div>
+                <div class="cta-title">READY TO ORDER?</div>
+                <div class="cta-sub">Get a quote within 24 hours. Serving Pan India.</div>
+            </div>
+            <div class="cta-btns">
+                <a href="#contact" class="btn btn-white btn-lg">Get a Quote</a>
+                <a href="pages/ProductCatalogue.pdf" download class="btn btn-outline-dark btn-lg" style="background:rgba(255,255,255,.12);color:white;border-color:rgba(255,255,255,.3)">⬇ Download Catalogue</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CREDENTIALS + CATALOGUE -->
+    <section id="credentials" class="section section-white">
+        <div class="container">
+            <div class="text-center reveal" style="text-align:center">
+                <div class="section-eye" style="justify-content:center">Verified</div>
+                <h2 class="section-h2">Our <em>Credentials</em></h2>
+                <p class="section-lead" style="margin:0 auto;text-align:center">Certified quality and transparent documentation.</p>
+            </div>
+            <div class="cred-layout">
+                <div class="cred-card reveal rd1">
+                    <span class="cred-badge badge-teal">GST Registered</span>
+                    <img src="images/GST CERTIFICATE-1.jpeg" alt="GST Certificate" class="cred-img" onerror="this.style.display='none'">
+                    <p class="cred-name">GST Certificate</p>
+                    <p class="cred-sub">27CAZPN2195L1ZO</p>
+                </div>
+                <div class="cred-card reveal rd2">
+                    <span class="cred-badge badge-navy">MSME Certified</span>
+                    <img src="images/UDYAM REGISTRATION CERTIFICATE-1_page-0001.jpg" alt="Udyam Certificate" class="cred-img" onerror="this.style.display='none'">
+                    <p class="cred-name">Udyam Certificate</p>
+                    <p class="cred-sub">Registered MSME Business</p>
+                </div>
+            </div>
+
+            <!-- CATALOGUE -->
+            <div class="cat-dl-block reveal">
+                <div class="cat-dl-card">
+                    <div class="cat-dl-icon">
+                        <div class="cat-dl-ring">📄</div>
+                        <div class="cat-dl-pulse"></div>
+                        <div class="cat-dl-pulse"></div>
+                    </div>
+                    <div class="cat-dl-info">
+                        <span class="cat-dl-eyebrow">Product Catalogue · 2025–26</span>
+                        <div class="cat-dl-title">A&C Enterprise — Industrial Fasteners</div>
+                        <div class="cat-dl-sub">8 Pages · Approx. 2 MB · PDF Format</div>
+                        <div class="cat-dl-pts">
+                            <div class="cat-dl-pt"><span class="cat-dl-dot"></span>Company profile, values & certifications</div>
+                            <div class="cat-dl-pt"><span class="cat-dl-dot"></span>Full product range — all 6 categories with images</div>
+                            <div class="cat-dl-pt"><span class="cat-dl-dot"></span>Contact details & social media links</div>
+                        </div>
+                    </div>
+                    <div class="cat-dl-btn-wrap">
+                        <a href="pages/ProductCatalogue.pdf" download="AC_Enterprise_Catalogue_2025-26.pdf" class="cat-dl-btn" id="catDlBtn">
+                            <span class="cat-dl-btn-ico">⬇</span>
+                            Download Catalogue
+                        </a>
+                        <p class="cat-dl-note">Free · No sign-up required</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-ink">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-eye">Get In Touch</div>
+                <h2 class="section-h2 on-dark">Let's <em>Connect</em></h2>
+            </div>
+            <div class="contact-grid">
+                <div class="reveal">
+                    <div class="contact-info-cards">
+                        <div class="cic">
+                            <div class="cic-icon">📧</div>
+                            <div><p class="cic-label">Email</p><p class="cic-val"><a href="mailto:sales.acdcs@gmail.com">sales.acdcs@gmail.com</a></p></div>
+                        </div>
+                        <div class="cic">
+                            <div class="cic-icon">📞</div>
+                            <div><p class="cic-label">Phone</p><p class="cic-val"><a href="tel:+918454878896">+91 84548 78896</a><br><a href="tel:+919653225937">+91 96532 25937</a></p></div>
+                        </div>
+                        <div class="cic">
+                            <div class="cic-icon">📍</div>
+                            <div><p class="cic-label">Address</p><p class="cic-val">Room No. 5, Smit Bunglow,<br>Kisan Nagar No. 3, Wagle Estate,<br>Thane 400604, Maharashtra</p></div>
+                        </div>
+                    </div>
+                    <div class="hours-box">
+                        <p class="hours-title">Business Hours</p>
+                        <div class="hours-row"><span>Monday – Saturday</span><span class="hours-time">9:00 AM – 6:00 PM</span></div>
+                        <div class="hours-row"><span>Sunday</span><span class="hours-time">Closed</span></div>
+                    </div>
+                </div>
+
+                <div class="form-card reveal rd2">
+                    <div id="formBody">
+                        <p class="form-title">Send Enquiry</p>
+                        <p class="form-sub">We respond within 24 hours.</p>
+                        <form id="contactForm" novalidate>
+                            <div class="form-2col">
+                                <div class="form-field"><label class="form-label">Name *</label><input type="text" name="name" class="form-input" placeholder="Your name" required></div>
+                                <div class="form-field"><label class="form-label">Email *</label><input type="email" name="email" class="form-input" placeholder="email@company.com" required></div>
+                            </div>
+                            <div class="form-2col">
+                                <div class="form-field"><label class="form-label">Phone *</label><input type="tel" name="phone" class="form-input" placeholder="+91 98765 43210" required></div>
+                                <div class="form-field">
+                                    <label class="form-label">Category</label>
+                                    <select name="category" class="form-select">
+                                        <option value="">— Select —</option>
+                                        <option>Bolts</option>
+                                        <option>Nuts</option>
+                                        <option>Washers</option>
+                                        <option>Screws</option>
+                                        <option>Blind Rivets</option>
+                                        <option>Blind Nuts</option>
+                                        <option>Other / Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-field"><label class="form-label">Specific Product</label><input type="text" name="product" id="productField" class="form-input" placeholder="e.g. Hex Bolt M10 × 50mm"></div>
+                            <div class="form-field"><label class="form-label">Message *</label><textarea name="message" class="form-textarea" placeholder="Describe your requirement — quantity, size, grade, material…" required></textarea></div>
+                            <button type="submit" class="form-submit" id="submitBtn">Send Enquiry →</button>
+                            <p class="form-privacy">🔒 Your information is never shared with third parties.</p>
+                        </form>
+                    </div>
+                    <div class="form-success" id="formSuccess">
+                        <div class="form-success-ico">✅</div>
+                        <div class="form-success-title">SENT!</div>
+                        <p class="form-success-sub">Thank you for contacting A&C Enterprise.<br>We'll get back to you within <strong>24 hours</strong>.</p>
+                        <button onclick="resetForm()" class="btn btn-ink" style="margin-top:24px;cursor:none">Send Another →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div>
+                    <div class="footer-logo-mark">A&C</div>
+                    <div class="footer-brand-name">A&C Enterprise</div>
+                    <p class="footer-brand-desc">Trusted supplier of high-quality industrial metal fasteners. Made-in-India products for modern industries.</p>
+                    <p class="footer-gst">GST: 27CAZPN2195L1ZO · Udyam MSME Registered</p>
+                </div>
+                <div>
+                    <p class="footer-col-title">Quick Links</p>
+                    <ul class="footer-links">
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#credentials">Credentials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-col-title">Categories</p>
+                    <ul class="footer-links">
+                        <li><a href="#products">Bolts</a></li>
+                        <li><a href="#products">Nuts</a></li>
+                        <li><a href="#products">Washers</a></li>
+                        <li><a href="#products">Screws</a></li>
+                        <li><a href="#products">Blind Rivets</a></li>
+                        <li><a href="#products">Blind Nuts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="footer-col-title">Contact</p>
+                    <div class="footer-contact">
+                        <div class="footer-citem"><span style="font-size:.9rem">📧</span><a href="mailto:sales.acdcs@gmail.com">sales.acdcs@gmail.com</a></div>
+                        <div class="footer-citem"><span style="font-size:.9rem">📞</span><div>+91 84548 78896<br>+91 96532 25937</div></div>
+                        <div class="footer-citem"><span style="font-size:.9rem">📍</span><div>Kisan Nagar No.3, Wagle Estate,<br>Thane 400604, Maharashtra</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">© 2025 A&C Enterprise. All rights reserved.</p>
+                <p class="footer-copy">Made-in-India · Industrial Metal Fasteners · Mumbai</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// ═══════════════ CONFIG ═══════════════
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+const ADMIN_EMAIL         = 'sales.acdcs@gmail.com';
+
+// ═══════════════ CURSOR ═══════════════
+const curOuter = document.getElementById('cur-outer');
+const curInner = document.getElementById('cur-inner');
+let ox = -100, oy = -100, rx = -100, ry = -100;
+
+document.addEventListener('mousemove', e => {
+  ox = e.clientX; oy = e.clientY;
+  curInner.style.left = ox + 'px';
+  curInner.style.top  = oy + 'px';
+});
+
+(function animCur() {
+  rx += (ox - rx) * .14;
+  ry += (oy - ry) * .14;
+  curOuter.style.left = rx + 'px';
+  curOuter.style.top  = ry + 'px';
+  requestAnimationFrame(animCur);
+})();
+
+document.querySelectorAll('a,button,.cat-card,.prod-card,.about-mini,.cred-card').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+});
+
+// ═══════════════ NAV ═══════════════
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+}, { passive: true });
+
+function toggleMobile() {
+  const m = document.getElementById('mobileNav');
+  const h = document.getElementById('hamburger');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// ═══════════════ HERO CANVAS ═══════════════
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+  function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  resize();
+  new ResizeObserver(resize).observe(canvas.parentElement);
+
+  const nodes = Array.from({length:55}, () => ({
+    x: Math.random() * 1400, y: Math.random() * 900,
+    vx: (Math.random()-.5)*.25, vy: (Math.random()-.5)*.25,
+    r: Math.random() * 1.2 + .4
+  }));
+
+  let mx = W/2, my = H/2;
+  canvas.parentElement.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+  }, { passive:true });
+
+  function tick() {
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if(n.x < 0) n.x = W; if(n.x > W) n.x = 0;
+      if(n.y < 0) n.y = H; if(n.y > H) n.y = 0;
+    });
+
+    // Draw connections
+    for(let i=0;i<nodes.length;i++) {
+      for(let j=i+1;j<nodes.length;j++) {
+        const d = Math.hypot(nodes[i].x-nodes[j].x, nodes[i].y-nodes[j].y);
+        if(d < 130) {
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(255,255,255,${.07*(1-d/130)})`;
+          ctx.lineWidth = .5;
+          ctx.stroke();
+        }
+      }
+      // Mouse glow lines
+      const dm = Math.hypot(nodes[i].x-mx, nodes[i].y-my);
+      if(dm < 200) {
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(mx, my);
+        ctx.strokeStyle = `rgba(212,82,26,${.18*(1-dm/200)})`;
+        ctx.lineWidth = .8;
+        ctx.stroke();
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(255,255,255,.35)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+// ═══════════════ COUNTER ═══════════════
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.querySelector('em')?.outerHTML || '';
+      let cur = 0; const step = target/60;
+      const t = setInterval(() => {
+        cur = Math.min(cur+step, target);
+        el.innerHTML = Math.floor(cur) + suffix;
+        if(cur >= target) clearInterval(t);
+      }, 16);
+    });
+    cntObs.unobserve(e.target);
+  });
+}, { threshold:.4 });
+document.querySelectorAll('.hero-stats-strip').forEach(el => cntObs.observe(el));
+
+// ═══════════════ REVEAL ═══════════════
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
+}, { threshold:.1 });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+// ═══════════════ PRODUCTS DATA ═══════════════
+const CAT_THEMES = {
+  'Bolts':        {color:'#e8621a',bg:'#fff5f0',icon:'🔩'},
+  'Nuts':         {color:'#2563eb',bg:'#eff6ff',icon:'⚙️'},
+  'Washers':      {color:'#d97706',bg:'#fffbeb',icon:'🔘'},
+  'Screws':       {color:'#059669',bg:'#ecfdf5',icon:'🪛'},
+  'Blind Rivets': {color:'#7c3aed',bg:'#f5f3ff',icon:'🔌'},
+  'Blind Nuts':   {color:'#dc2626',bg:'#fef2f2',icon:'🔧'},
+};
+
+const PRODUCTS = [
+  {id:1, name:'Hex Bolt', cat:'Bolts', desc:'Standard hexagonal head bolt for general industrial and structural applications.', specs:['Steel','SS 304','M4–M100','DIN 933'], img:'images/products/hex-bolt.png'},
+  {id:2, name:'Carriage Bolt', cat:'Bolts', desc:'Round-headed bolt with square neck, ideal for wood-to-metal connections.', specs:['Steel','Zinc Plated','M6–M20','DIN 603'], img:'images/products/carriage-bolt.png'},
+  {id:3, name:'Anchor Bolt', cat:'Bolts', desc:'Heavy-duty fastener that securely anchors structural elements to concrete or masonry.', specs:['Carbon Steel','HDG','M8–M36'], img:'images/products/anchor-bolt.png'},
+  {id:4, name:'Eye Bolt', cat:'Bolts', desc:'Circular loop bolt used for attaching ropes, cables, or lifting hooks in rigging.', specs:['Steel','SS 316','M6–M48','DIN 580'], img:'images/products/eye-bolt.png'},
+  {id:5, name:'U-Bolt', cat:'Bolts', desc:'U-shaped bolt for securing pipes and round sections in plumbing and automotive use.', specs:['Steel','Zinc Plated','M6–M24'], img:'images/products/u-bolt.jpg'},
+  {id:6, name:'Socket Head Bolt', cat:'Bolts', desc:'Cylindrical bolt with internal hex socket, ideal for confined spaces and machinery.', specs:['Alloy Steel','Black Oxide','M3–M64','DIN 912'], img:'images/products/socket-head-bolt.jpg'},
+  {id:7, name:'Flange Bolt', cat:'Bolts', desc:'Bolt with integrated wide flange acting as a built-in washer for load distribution.', specs:['Steel','Zinc Plated','M6–M20','DIN 6921'], img:'images/products/flange-bolt.jpg'},
+  {id:8, name:'Stud Bolt', cat:'Bolts', desc:'Fully threaded headless rod used in high-pressure flanged joints in oil and gas.', specs:['Alloy Steel','B7/2H','M12–M100','ASTM A193'], img:'images/products/stud-bolt.jpg'},
+  {id:9, name:'Threaded Rod', cat:'Bolts', desc:'Fully threaded steel rod used in construction, conduit support, and structural hanging.', specs:['Steel','SS 304','M6–M64','DIN 975'], img:'images/products/threaded-rod.jpeg'},
+  {id:10, name:'Hex Nut', cat:'Nuts', desc:'Standard six-sided nut used with bolts and screws across all industrial applications.', specs:['Steel','SS 304','M4–M100','DIN 934'], img:'images/products/hex-nut.jpg'},
+  {id:11, name:'Lock Nut', cat:'Nuts', desc:'Nut designed to resist loosening under vibration and dynamic loads.', specs:['Steel','Zinc Plated','M4–M36','DIN 980'], img:'images/products/lock-nut.jpg'},
+  {id:12, name:'Nylock Nut', cat:'Nuts', desc:'Nylon insert nut that self-locks and prevents loosening without additional hardware.', specs:['Steel','Zinc Plated','M3–M64','DIN 985'], img:'images/products/nylock-nut.jpg'},
+  {id:13, name:'Wing Nut', cat:'Nuts', desc:'Hand-tightened nut with two wings for quick assembly and disassembly without tools.', specs:['Steel','SS 304','M4–M20','DIN 315'], img:'images/products/wing-nut.jpeg'},
+  {id:14, name:'Cap Nut', cat:'Nuts', desc:'Domed nut that covers and protects the exposed bolt end from corrosion and damage.', specs:['Steel','Chrome','M4–M24','DIN 1587'], img:'images/products/cap-nut.jpeg'},
+  {id:15, name:'Flange Nut', cat:'Nuts', desc:'Nut with wide circular flange base providing larger bearing surface.', specs:['Steel','Zinc Plated','M5–M24','DIN 6923'], img:'images/products/flange-nut.jpeg'},
+  {id:16, name:'Square Nut', cat:'Nuts', desc:'Four-sided nut offering greater resistance to loosening in wood and track applications.', specs:['Steel','Zinc Plated','M4–M20','DIN 557'], img:'images/products/square-nut.jpeg'},
+  {id:17, name:'Coupling Nut', cat:'Nuts', desc:'Extended nut used to join two threaded rods or extend bolt length in structural work.', specs:['Steel','Zinc Plated','M6–M36','DIN 6334'], img:'images/products/coupling-nut.jpeg'},
+  {id:18, name:'Flat Washer', cat:'Washers', desc:'Standard circular washer that distributes load and protects surface under bolt head.', specs:['Steel','SS 304','M3–M100','DIN 125'], img:'images/products/flat-washer.jpeg'},
+  {id:19, name:'Spring Washer', cat:'Washers', desc:'Split ring washer that provides spring tension to prevent fastener loosening.', specs:['Spring Steel','Galvanised','M3–M50','DIN 127'], img:'images/products/spring-washer.jpeg'},
+  {id:20, name:'Plain Washer', cat:'Washers', desc:'Simple flat washer used to spread load and reduce surface damage on assemblies.', specs:['Steel','Zinc Plated','M4–M64'], img:'images/products/plain-washer.jpeg'},
+  {id:21, name:'Lock Washer', cat:'Washers', desc:'Toothed or split washer that bites into surfaces to prevent rotation and loosening.', specs:['Steel','SS 316','M4–M36','DIN 6798'], img:'images/products/lock-washer.jpeg'},
+  {id:22, name:'Fender Washer', cat:'Washers', desc:'Large outer diameter washer for use with oversized holes or soft material surfaces.', specs:['Steel','Zinc Plated','M5–M20'], img:'images/products/fender-washer.jpeg'},
+  {id:23, name:'Square Washer', cat:'Washers', desc:'Square-shaped washer offering greater bearing area for timber and structural use.', specs:['Steel','Hot Dip','M8–M36'], img:'images/products/square-washer.jpeg'},
+  {id:24, name:'Sealing Washer', cat:'Washers', desc:'Washer with rubber face that creates a watertight seal under the fastener head.', specs:['Steel + EPDM','M5–M20'], img:'images/products/sealing-washer.jpeg'},
+  {id:25, name:'Self-Tapping Screw', cat:'Screws', desc:'Hardened screw that cuts its own thread into metal, plastic, or sheet material.', specs:['Carbon Steel','Zinc Plated','2.9–6.3mm','DIN 7981'], img:'images/products/self-tapping-screw.jpeg'},
+  {id:26, name:'Machine Screw', cat:'Screws', desc:'Precision screw used with nuts or tapped holes in machinery and equipment.', specs:['Steel','SS 304','M2–M12','DIN 963'], img:'images/products/machine-screw.jpeg'},
+  {id:27, name:'Wood Screw', cat:'Screws', desc:'Tapered screw with coarse thread designed for secure fastening into wood.', specs:['Carbon Steel','Zinc Plated','2.5–8mm'], img:'images/products/wood-screw.jpeg'},
+  {id:28, name:'Sheet Metal Screw', cat:'Screws', desc:'Sharp-pointed screw for fastening thin metal sheets without pre-drilling.', specs:['Carbon Steel','Black Oxide','2.9–6.3mm'], img:'images/products/sheet-metal-screw.png'},
+  {id:29, name:'Drywall Screw', cat:'Screws', desc:'Fine or coarse threaded screw specifically designed for fixing drywall to framing.', specs:['Carbon Steel','Black Phosphate','3.5–5.5mm'], img:'images/products/drywall-screw.jpeg'},
+  {id:30, name:'Allen Socket Screw', cat:'Screws', desc:'Screw with internal hex socket drive for high-torque precision assembly.', specs:['Alloy Steel','Black Oxide','M3–M36','DIN 912'], img:'images/products/allen-socket-screw.jpeg'},
+  {id:31, name:'Set Screw', cat:'Screws', desc:'Headless screw used to secure components like gears or pulleys onto a shaft.', specs:['Alloy Steel','Black Oxide','M3–M20','DIN 913'], img:'images/products/set-screw.jpeg'},
+  {id:32, name:'Concrete Screw', cat:'Screws', desc:'Hardened screw that anchors directly into concrete or masonry without a plug.', specs:['Carbon Steel','Zinc Plated','6–14mm'], img:'images/products/concrete-screw.jpeg'},
+  {id:33, name:'Open End Blind Rivet', cat:'Blind Rivets', desc:'Standard blind rivet with open end for general sheet metal and panel joining.', specs:['Aluminium','Steel Mandrel','2.4–6.4mm'], img:'images/products/open-end-blind-rivet.jpeg'},
+  {id:34, name:'Closed End Blind Rivet', cat:'Blind Rivets', desc:'Sealed blind rivet that prevents moisture and gas ingress through the rivet hole.', specs:['Aluminium','Steel Mandrel','3.2–6.4mm'], img:'images/products/closed-end-blind-rivet.jpeg'},
+  {id:35, name:'Multigrip Blind Rivet', cat:'Blind Rivets', desc:'Single rivet that accommodates multiple material thickness ranges for versatile use.', specs:['Aluminium','Multi-Grip','3.2–5mm'], img:'images/products/multigrip-blind-rivet.jpeg'},
+  {id:36, name:'Unigrip Blind Rivet', cat:'Blind Rivets', desc:'Single-body rivet providing strong consistent clamp force across varied grip ranges.', specs:['Steel','Zinc Plated','3.2–6.4mm'], img:'images/products/unigrip-blind-rivet.jpeg'},
+  {id:37, name:'Solid Rivet', cat:'Blind Rivets', desc:'Traditional one-piece rivet providing the strongest permanent fastening connection.', specs:['Aluminium','Steel','2–10mm','DIN 660'], img:'images/products/solid-rivet.jpeg'},
+  {id:38, name:'Structural Rivet', cat:'Blind Rivets', desc:'High-strength rivet designed for load-bearing structural and heavy-duty applications.', specs:['Aluminium','Steel Mandrel','4.8–6.4mm'], img:'images/products/structural-rivet.jpeg'},
+  {id:39, name:'Monobolt Rivet', cat:'Blind Rivets', desc:'High-performance structural blind rivet with large blind head for maximum strength.', specs:['Aluminium','Carbon Steel','4.8–6.4mm'], img:'images/products/monobolt-rivet.jpeg'},
+  {id:40, name:'Hemlock Rivet', cat:'Blind Rivets', desc:'Rivet with large dome head offering superior pull-through resistance in soft material.', specs:['Aluminium','Large Flange','3.2–6.4mm'], img:'images/products/hemlock-rivet.jpeg'},
+  {id:41, name:'Plain Round Blind Nut', cat:'Blind Nuts', desc:'Standard round blind nut for blind hole fastening in sheet metal and panels.', specs:['Steel','Zinc Plated','M3–M12'], img:null},
+  {id:42, name:'Splined Serrated Blind Nut', cat:'Blind Nuts', desc:'Blind nut with splined body preventing rotation during installation in thin materials.', specs:['Steel','Zinc Plated','M4–M10'], img:null},
+  {id:43, name:'Semi Hex Blind Nut', cat:'Blind Nuts', desc:'Half hexagonal blind nut offering anti-rotation grip in sheet metal applications.', specs:['Steel','Zinc Plated','M4–M12'], img:null},
+  {id:44, name:'Full Hex Blind Nut', cat:'Blind Nuts', desc:'Full hexagonal blind nut providing maximum torque resistance and anti-rotation strength.', specs:['Steel','Zinc Plated','M4–M12'], img:null},
+  {id:45, name:'Clinching Nut', cat:'Blind Nuts', desc:'Press-in nut that permanently clinches into sheet metal for strong threaded connections.', specs:['Steel','Zinc Plated','M3–M12'], img:null},
+  {id:46, name:'Clinching Stud', cat:'Blind Nuts', desc:'Press-in stud that permanently fastens into sheet metal providing a fixed threaded projection.', specs:['Steel','Zinc Plated','M3–M10'], img:null},
+  {id:47, name:'Standoff Nut', cat:'Blind Nuts', desc:'Hollow threaded spacer used to maintain fixed distance between components in assemblies.', specs:['Steel','Brass','M3–M8'], img:null},
+  {id:48, name:'Weld Nut', cat:'Blind Nuts', desc:'Nut designed to be permanently welded onto metal surfaces for secure threaded joints.', specs:['Steel','Plain/Zinc','M4–M16','DIN 929'], img:null},
+];
+
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+// ═══════════════ CATEGORY GRID ═══════════════
+(function() {
+  const grid = document.getElementById('catGrid');
+  if(!grid) return;
+  const cats = [
+    {name:'Bolts', count:9, examples:'Hex Bolt · Carriage Bolt · Anchor Bolt · Eye Bolt · Stud Bolt'},
+    {name:'Nuts', count:8, examples:'Hex Nut · Lock Nut · Nylock Nut · Wing Nut · Cap Nut'},
+    {name:'Washers', count:7, examples:'Flat · Spring · Plain · Lock · Fender · Sealing Washer'},
+    {name:'Screws', count:8, examples:'Self-Tapping · Machine · Wood · Sheet Metal · Allen Socket'},
+    {name:'Blind Rivets', count:8, examples:'Open End · Closed End · Multigrip · Solid · Structural'},
+    {name:'Blind Nuts', count:8, examples:'Plain Round · Full Hex · Clinching Nut · Standoff · Weld Nut'},
+  ];
+  grid.innerHTML = cats.map((c,i) => {
+    const t = CAT_THEMES[c.name] || {};
+    return `<a href="#products" class="cat-card" onclick="filterByCat('${c.name}')">
+      <div class="cat-card-top">
+        <div class="cat-icon-wrap" style="background:${t.bg}"><span style="font-size:1.5rem">${t.icon}</span></div>
+        <div class="cat-num">0${i+1}</div>
+      </div>
+      <div class="cat-name">${c.name}</div>
+      <div class="cat-count">${c.count} Products</div>
+      <div class="cat-examples">${c.examples}</div>
+      <div class="cat-arrow">View Products <span>→</span></div>
+    </a>`;
+  }).join('');
+})();
+
+// ═══════════════ PRODUCTS ═══════════════
+let activeCat = 'All';
+let searchQ   = '';
+let debounce  = null;
+
+const cats = ['All', ...Object.keys(CAT_THEMES)];
+const catCounts = {};
+PRODUCTS.forEach(p => { catCounts[p.cat] = (catCounts[p.cat]||0)+1; });
+
+function renderFilters() {
+  const row = document.getElementById('filterRow');
+  if(!row) return;
+  row.innerHTML = cats.map(c => `
+    <button class="filter-pill ${c===activeCat?'active':''}" onclick="setFilter('${c}')">
+      ${c==='All'?'🔩':CAT_THEMES[c]?.icon||''} ${c}
+      <span style="opacity:.55;font-size:.55rem;margin-left:4px">${c==='All'?PRODUCTS.length:catCounts[c]||0}</span>
+    </button>`).join('');
+}
+
+function setFilter(cat) {
+  activeCat = cat;
+  renderFilters();
+  renderProducts();
+  document.getElementById('searchBar').value = '';
+  searchQ = '';
+}
+
+function filterByCat(cat) {
+  activeCat = cat;
+  renderFilters();
+  renderProducts();
+}
+
+function showSkeletons() {
+  const grid = document.getElementById('prodGrid');
+  grid.innerHTML = Array.from({length:8},()=>`
+    <div class="skel-card">
+      <div class="skel-img"></div>
+      <div class="skel-body">
+        <div class="skel-line w70"></div>
+        <div class="skel-line w90"></div>
+        <div class="skel-line w55"></div>
+      </div>
+    </div>`).join('');
+}
+
+function renderProducts() {
+  const grid = document.getElementById('prodGrid');
+  const cntEl = document.getElementById('prodCount');
+  if(!grid) return;
+
+  let list = activeCat==='All' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeCat);
+  if(searchQ) {
+    const q = searchQ.toLowerCase();
+    list = list.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      (p.desc||'').toLowerCase().includes(q) ||
+      p.cat.toLowerCase().includes(q) ||
+      (p.specs||[]).some(s=>s.toLowerCase().includes(q))
+    );
+  }
+
+  if(cntEl) cntEl.textContent = list.length;
+
+  if(!list.length) {
+    grid.innerHTML = `<div class="prod-empty"><div class="prod-empty-ico">🔍</div><p style="font-weight:700;color:var(--ink);margin-bottom:6px">No products found</p><p style="font-size:.85rem;color:var(--ink4)">Try a different category or search term</p></div>`;
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+  list.forEach((p,i) => {
+    const t = CAT_THEMES[p.cat]||{};
+    const delay = (i%8)*45;
+    const card = document.createElement('div');
+    card.className = 'prod-card';
+    card.style.cssText = `opacity:0;transform:translateY(18px);transition:opacity .45s ease ${delay}ms,transform .45s ease ${delay}ms,border-color .25s,box-shadow .3s,transform .3s ease`;
+
+    const imgHtml = p.img
+      ? `<img class="prod-img" src="${esc(p.img)}" alt="${esc(p.name)}" loading="lazy"
+             onerror="this.parentElement.querySelector('.prod-no-img').style.opacity='.12';this.remove()">`
+      : '';
+
+    card.innerHTML = `
+      <div class="prod-img-box" style="background:${t.bg||'var(--sand)'}">
+        ${imgHtml}
+        <span class="prod-no-img">${t.icon||'🔩'}</span>
+        <span class="prod-chip">${esc(p.cat)}</span>
+      </div>
+      <div class="prod-body">
+        <div class="prod-name">${esc(p.name)}</div>
+        <div class="prod-desc">${esc(p.desc)}</div>
+        <div class="prod-specs">${(p.specs||[]).map(s=>`<span class="prod-spec">${esc(s)}</span>`).join('')}</div>
+        <a href="#contact" class="prod-enq" onclick="document.getElementById('productField').value='${esc(p.name)}'">Enquire Now →</a>
+      </div>`;
+
+    frag.appendChild(card);
+    // Add hover cursor class
+    card.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    card.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+
+  grid.innerHTML = '';
+  grid.appendChild(frag);
+
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    grid.querySelectorAll('.prod-card').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }));
+}
+
+// Search
+document.getElementById('searchBar')?.addEventListener('input', e => {
+  clearTimeout(debounce);
+  debounce = setTimeout(() => {
+    searchQ = e.target.value.trim();
+    renderProducts();
+  }, 260);
+});
+document.getElementById('searchBar')?.addEventListener('keydown', e => {
+  if(e.key==='Escape') { e.target.value=''; searchQ=''; renderProducts(); }
+});
+
+// Init
+showSkeletons();
+setTimeout(() => { renderFilters(); renderProducts(); }, 150);
+
+// ═══════════════ EMAILJS CONTACT FORM ═══════════════
+if(typeof emailjs !== 'undefined') emailjs.init(EMAILJS_PUBLIC_KEY);
+
+document.getElementById('contactForm')?.addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = document.getElementById('submitBtn');
+  if(!form.checkValidity()) { form.reportValidity(); return; }
+
+  btn.disabled    = true;
+  btn.textContent = 'Sending…';
+
+  const fd = new FormData(form);
+  const params = {
+    from_name:  (fd.get('name')     ||'').trim(),
+    from_email: (fd.get('email')    ||'').trim(),
+    phone:      (fd.get('phone')    ||'Not provided').trim(),
+    category:   (fd.get('category')||'General Enquiry'),
+    product:    (fd.get('product')  ||'Not specified').trim(),
+    message:    (fd.get('message')  ||'').trim(),
+    to_email:   ADMIN_EMAIL,
+    reply_to:   (fd.get('email')    ||'').trim(),
+    subject:    `New Enquiry from ${(fd.get('name')||'').trim()} — A&C Enterprise`,
+    year:       new Date().getFullYear(),
+  };
+
+  try {
+    if(typeof emailjs === 'undefined') throw new Error('EmailJS not loaded');
+    // Admin notification
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+    // Customer confirmation
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      ...params, to_email: params.from_email,
+      subject: 'We received your enquiry — A&C Enterprise',
+    });
+    document.getElementById('formBody').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  } catch(err) {
+    console.error(err);
+    showToast('Failed to send. Email us at sales.acdcs@gmail.com', 'error');
+    btn.disabled    = false;
+    btn.textContent = 'Send Enquiry →';
+  }
+});
+
+function resetForm() {
+  document.getElementById('contactForm').reset();
+  document.getElementById('formBody').style.display = '';
+  document.getElementById('formSuccess').classList.remove('show');
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  btn.textContent = 'Send Enquiry →';
+}
+
+// ═══════════════ TOAST ═══════════════
+function showToast(msg, type='success') {
+  document.querySelectorAll('.toast').forEach(t=>t.remove());
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.innerHTML = `<span class="toast-icon">${type==='success'?'✅':'❌'}</span><span>${msg}</span>`;
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),400)}, 5000);
+}
+    </script>
+</body>
+</html>
